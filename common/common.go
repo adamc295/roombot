@@ -21,4 +21,5 @@ var (
 
 func Init() error {
 	
+	return
 }
