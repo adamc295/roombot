@@ -39,6 +39,9 @@ func main() {
 
 	dg.LogLevel = discordgo.LogDebug
 
+	// Add the handlers
+	dg.AddHandler(messageCreate)
+
 	// Open for business!
 	err = dg.Open()
 	if err != nil {
@@ -57,8 +60,15 @@ func main() {
 }
 
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+	fmt.Println("Received a message!")
 	if m.Author.ID == s.State.User.ID {
 		// Ignore, message was made by bot
+		fmt.Println("Never mind, it was made by the bot.")
 		return
+	}
+
+	if m.Content == "roombot speak" {
+		fmt.Println("Speaking...")
+		s.ChannelMessageSend(m.ChannelID, "Hello, World!")
 	}
 }
