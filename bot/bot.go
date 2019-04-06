@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/jonas747/discordgo"
 )
@@ -14,6 +15,7 @@ import (
 // The token is the username and password for the bot. If it gets out, then ya fucked.
 var (
 	Token string
+	Start = time.Now()
 )
 
 func init() {
