@@ -4,6 +4,9 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	
+	"goji.io"
+	"goji.io/pat"
 )
 
 var (
@@ -16,8 +19,17 @@ func main() {
 	
 	log.Println("Starting web server...")
 	
-	err = http.ListenAndServe(":5000", nil)
+	mux := setupRoutes()
+	
+	err = http.ListenAndServe(":5000", mux)
 	if err != nil {
 		return
 	}
+}
+
+func setupRoutes() *goji.Mux {
+	mux := goji.NewMux()
+	mux.HandleFunc(pat.Get("/"), index)
+	mux.Handle(pat.Get("/static/*"), http.FileServer(http.Dir(".")))
+	return mux
 }
