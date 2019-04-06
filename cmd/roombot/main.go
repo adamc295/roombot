@@ -3,7 +3,7 @@ package main
 import (
 	log "github.com/sirupsen/logrus"
 	"flag"
-	"github.com/adamc295/roombot/common"
+	//"github.com/adamc295/roombot/common"
 )
 
 var (
@@ -19,7 +19,7 @@ func main() {
 	
 	log.SetFormatter(&log.TextFormatter {
 		DisableTimestamp: true,
-		ForceColors: false,
+		ForceColors: true,
 	})
 	
 	// No token? Get out!
@@ -29,9 +29,11 @@ func main() {
 	}
 	
 	log.Info("Starting RoomBot...")
-	
+	/*
 	err := common.Init()
 	if err != nil {
 		log.WithError(err).Fatal("Failed on initialize")
-	}
+	}*/
+	
+	
 }

@@ -19,26 +19,18 @@ var (
 	b_user *discordgo.User
 	
 	Conf *CoreConfig
-	
 )
 
 func Init() error {
-	
-	var err error
 	config, err := LoadConfig()
 	if err != nil {
 		return err
 	}
-	
 	Conf = config
 	
-	fmt.Println(config.b_ID)
-	fmt.Println(Conf.b_ID)
-	
-	fmt.Println(err)
 	b_user, err = b_session.UserMe()
 	if err != nil {
-		return err
+		panic(err)
 	}	
 	
 	// Apparently, not using a varible is an error in go's eyes.
