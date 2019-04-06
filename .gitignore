@@ -1,0 +1,4 @@
+# No executables.
+*.exe
+
+# vscode stuff
