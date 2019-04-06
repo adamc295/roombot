@@ -32,6 +32,6 @@ func main() {
 	
 	err := common.Init()
 	if err != nil {
-		log.withError(err).Fatal("Failed on initialize")
+		log.WithError(err).Fatal("Failed on initialize")
 	}
 }
