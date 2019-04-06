@@ -29,4 +29,9 @@ func main() {
 	}
 	
 	log.Info("Starting RoomBot...")
+	
+	err := common.Init()
+	if err != nil {
+		log.withError(err).Fatal("Failed on initialize")
+	}
 }
