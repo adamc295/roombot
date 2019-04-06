@@ -1,4 +1,7 @@
 # No executables.
 *.exe
 
+# A bit private.
+token.txt
+
 # vscode stuff
