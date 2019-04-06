@@ -8,7 +8,7 @@ import (
 func index(w http.ResponseWriter, r *http.Request) {
 	templateData := make(map[string]interface{})
 	
-	err := templates.ExecuteTemplate(w, "index.html", templateData)
+	err := templates.ExecuteTemplate(w, "index", templateData)
 	if err != nil {
 		log.Println("Failed to execute template: ", err)
 	}
