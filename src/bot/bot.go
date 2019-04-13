@@ -28,6 +28,8 @@ func Run() {
 			return
 		}
 		
+		session.AddHandler(OnMessageSend)
+		
 		session.StateEnabled = true
 		session.LogLevel = discordgo.LogInformational
 		session.SyncEvents = true
@@ -52,9 +54,21 @@ func Run() {
 		processshards[i] = i
 	}
 	
+	// If you want to kill your bandwidth, set this to 100.
 	ShardManager.SetNumShards(10)
 	
 	go ShardManager.Start()
+}
+
+func OnMessageSend(session *discordgo.Session, message *discordgo.MessageCreate) {
+	if message.Author.ID == session.State.User.ID {
+		log.Info("Message was created by bot.")
+		return
+	}
+	
+	if message.Content == "roombot speak" {
+		session.ChannelMessageSend(message.ChannelID, "Hello! I'm @RoomBot!")
+	}
 }
 
 func Stop(wg *sync.WaitGroup) {
